@@ -7,13 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
   <!-- Navigatie -->
   <header>
     <div class="nav-brand">Heksenverbranding in Schiedam &mdash; Profielwerkstuk</div>
+    <button class="menu-toggle" aria-label="Menu openen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <nav>
       <a href="index.html">Home</a>
       <a href="achtergrond.html" class="actief">Achtergrond</a>
@@ -220,6 +223,21 @@
   <footer>
     <p>Şerife &middot; Naz &middot; Houda &middot; Sena &nbsp;|&nbsp; Profielwerkstuk 2025&ndash;2026 &nbsp;|&nbsp; Heksenverbranding in Schiedam</p>
   </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    toggle?.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      toggle.setAttribute('aria-label', open ? 'Menu openen' : 'Menu sluiten');
+      nav.classList.toggle('open');
+    });
+    nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
 
 </body>
 </html>

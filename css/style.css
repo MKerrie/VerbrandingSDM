@@ -715,18 +715,134 @@ footer::before {
 footer a { color: #e8d4a0; }
 
 /* =============================================
+   HAMBURGER MENU
+   ============================================= */
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #e8d0a8;
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* =============================================
    RESPONSIVE
    ============================================= */
 
 @media (max-width: 640px) {
-  h1              { font-size: 1.55rem; }
-  h2              { font-size: 1.25rem; }
-  nav a           { padding: 0.6rem 0.8rem; font-size: 0.7rem; }
-  .kaarten        { grid-template-columns: 1fr 1fr; }
+  /* Typografie */
+  h1              { font-size: 1.45rem; }
+  h2              { font-size: 1.2rem; }
+  h3              { font-size: 1rem; }
+  body            { font-size: 0.95rem; }
+
+  /* Header */
+  header {
+    position: relative;
+  }
+
+  .nav-brand {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    padding: 0.3rem 3rem 0.3rem 1rem;
+  }
+
+  /* Hamburger zichtbaar */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Nav verborgen op mobiel, uitklapbaar */
+  nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: linear-gradient(180deg, #4a0e0e 0%, #6e1515 100%);
+    border-top: 1px solid rgba(200,160,80,0.3);
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  nav a {
+    padding: 0.9rem 1.2rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(200,160,80,0.2);
+    font-size: 0.82rem;
+    text-align: left;
+    width: 100%;
+  }
+
+  nav a:first-child { border-left: none; }
+
+  nav a.actief::after {
+    display: none;
+  }
+
+  /* Inhoud */
+  .kaarten        { grid-template-columns: 1fr; }
   .bronnen-grid   { grid-template-columns: 1fr; }
-  .tijdlijn::before { left: 72px; }
-  .tijdlijn .jaar { min-width: 65px; font-size: 0.72rem; }
-  .pagina-titel h1 { font-size: 1.5rem; }
-  .container      { padding: 1.6rem 1rem; }
-  .sectie         { padding: 1.2rem 1.1rem; }
+  .team           { grid-template-columns: 1fr 1fr; }
+
+  .container      { padding: 1.4rem 1rem; }
+  .sectie         { padding: 1.1rem 1rem; }
+
+  .pagina-titel   { padding: 1.6rem 1rem 1.2rem; }
+  .pagina-titel h1 { font-size: 1.4rem; }
+
+  /* Tijdlijn */
+  .tijdlijn::before { left: 68px; }
+  .tijdlijn .jaar { min-width: 60px; font-size: 0.7rem; }
+  .tijdlijn .event { font-size: 0.88rem; }
+
+  /* Blockquote */
+  blockquote {
+    padding: 1rem 1rem 1rem 2.2rem;
+  }
+  blockquote::before { font-size: 3rem; }
+
+  /* Sub-nav */
+  .sub-nav {
+    flex-direction: column;
+  }
+  .sub-nav a {
+    border-right: none;
+    border-bottom: 1px solid #c8aa72;
+    text-align: center;
+  }
+  .sub-nav a:last-child { border-bottom: none; }
+}
+
+@media (max-width: 400px) {
+  h1 { font-size: 1.25rem; }
+  .kaarten { grid-template-columns: 1fr; }
+  .team    { grid-template-columns: 1fr 1fr; }
 }
