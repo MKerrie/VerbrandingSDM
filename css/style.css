@@ -723,33 +723,72 @@ footer a { color: #e8d4a0; }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 0.8rem;
   position: absolute;
-  right: 0;
+  right: 0.5rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 200;
   flex-direction: column;
   gap: 5px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  background: rgba(255,255,255,0.08);
+  outline: none;
 }
 
 .menu-toggle span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
   background-color: #e8d0a8;
   border-radius: 2px;
-  transition: transform 0.25s, opacity 0.25s;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1),
+              opacity 0.2s ease,
+              width 0.3s ease;
+  transform-origin: center;
+}
+
+/* Tweede lijn iets korter voor visueel accent */
+.menu-toggle span:nth-child(2) {
+  width: 16px;
 }
 
 .menu-toggle[aria-expanded="true"] span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
+  width: 22px;
 }
 .menu-toggle[aria-expanded="true"] span:nth-child(2) {
   opacity: 0;
+  width: 0;
 }
 .menu-toggle[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+  width: 22px;
+}
+
+/* Overlay backdrop wanneer menu open is */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 90;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease;
+}
+
+.menu-overlay.open {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* =============================================
@@ -779,26 +818,74 @@ footer a { color: #e8d4a0; }
     display: flex;
   }
 
-  /* Nav verborgen op mobiel, uitklapbaar */
+  /* Nav verborgen op mobiel — absoluut gepositioneerd zodat de header zijn hoogte behoudt */
   nav {
-    display: none;
     flex-direction: column;
     width: 100%;
-    background: linear-gradient(180deg, #4a0e0e 0%, #6e1515 100%);
-    border-top: 1px solid rgba(200,160,80,0.3);
+    background: linear-gradient(180deg, #3a0a0a 0%, #5c1010 60%, #6e1515 100%);
+    border-top: 2px solid rgba(200,160,80,0.4);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    z-index: 150;
+
+    /* Absoluut onder de header, niet binnen de flow */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    /* Slide-down animatie */
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+    transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1),
+                opacity 0.25s ease;
+    opacity: 0;
   }
 
   nav.open {
-    display: flex;
+    max-height: 400px;
+    opacity: 1;
   }
 
   nav a {
-    padding: 0.9rem 1.2rem;
+    padding: 0.95rem 1.4rem;
     border-right: none;
-    border-bottom: 1px solid rgba(200,160,80,0.2);
-    font-size: 0.82rem;
+    border-bottom: 1px solid rgba(200,160,80,0.15);
+    font-size: 0.88rem;
     text-align: left;
     width: 100%;
+    letter-spacing: 0.1em;
+    transition: background 0.15s, padding-left 0.15s;
+    position: relative;
+  }
+
+  nav a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #c8aa72;
+    transform: scaleY(0);
+    transition: transform 0.2s ease;
+    transform-origin: center;
+  }
+
+  nav a:hover {
+    background: rgba(200,160,80,0.12);
+    padding-left: 1.8rem;
+  }
+
+  nav a:hover::before,
+  nav a.actief::before {
+    transform: scaleY(1);
+  }
+
+  nav a.actief {
+    background: rgba(200,160,80,0.1);
+    color: #f0d890;
+    padding-left: 1.8rem;
   }
 
   nav a:first-child { border-left: none; }

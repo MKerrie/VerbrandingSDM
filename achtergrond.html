@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 
@@ -227,16 +227,28 @@
   <script>
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
-    toggle?.addEventListener('click', () => {
-      const open = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!open));
-      toggle.setAttribute('aria-label', open ? 'Menu openen' : 'Menu sluiten');
-      nav.classList.toggle('open');
-    });
-    nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    const overlay = document.createElement('div');
+    overlay.className = 'menu-overlay';
+    document.body.appendChild(overlay);
+
+    function openMenu() {
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Menu sluiten');
+      nav.classList.add('open');
+      overlay.classList.add('open');
+    }
+    function closeMenu() {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Menu openen');
       nav.classList.remove('open');
-      toggle?.setAttribute('aria-expanded', 'false');
-    }));
+      overlay.classList.remove('open');
+    }
+
+    toggle?.addEventListener('click', () => {
+      toggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+    });
+    overlay.addEventListener('click', closeMenu);
+    nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   </script>
 
 </body>
