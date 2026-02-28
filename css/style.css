@@ -1,0 +1,732 @@
+/* =============================================
+   Heksenverbranding in Schiedam — Stylesheet
+   Historisch thema · verfijnde versie
+   ============================================= */
+
+/* === Google Fonts === */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* === Reset & Base === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #2a1a0e;
+  background-color: #e8d8b4;
+  background-image:
+    /* Donkere randen (perkamentveroudering) */
+    radial-gradient(ellipse at 0% 0%,   rgba(100,60,10,0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 0%,  rgba(100,60,10,0.14) 0%, transparent 45%),
+    radial-gradient(ellipse at 0% 100%,  rgba(100,60,10,0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 100%,rgba(100,60,10,0.14) 0%, transparent 45%),
+    /* Licht in het midden */
+    radial-gradient(ellipse at 50% 40%,  rgba(255,240,200,0.35) 0%, transparent 70%),
+    /* Ruistextuur */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  min-height: 100vh;
+}
+
+/* =============================================
+   TYPOGRAFIE
+   ============================================= */
+
+h1, h2 {
+  font-family: 'Cinzel', Georgia, serif;
+  color: #5a1010;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+h3, h4 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 600;
+  color: #6b2020;
+  line-height: 1.3;
+}
+
+h1 { font-size: 2.1rem; }
+h2 { font-size: 1.55rem; margin-bottom: 0.8rem; }
+h3 { font-size: 1.1rem;  margin-bottom: 0.4rem; margin-top: 1.3rem; }
+
+p { margin-bottom: 1rem; }
+
+strong { color: #4a1010; }
+
+a { color: #7a1a1a; text-decoration: none; }
+a:hover { text-decoration: underline; color: #5a0e0e; }
+
+em { font-style: italic; }
+
+/* =============================================
+   NAVIGATIE
+   ============================================= */
+
+header {
+  background: linear-gradient(180deg, #3d0a0a 0%, #6e1515 100%);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.55);
+}
+
+/* Smalle topbalk */
+.nav-brand {
+  background-color: #2a0606;
+  text-align: center;
+  padding: 0.35rem 1rem;
+  color: #c8a050;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(200,160,80,0.4);
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #e8d0a8;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-right: 1px solid rgba(200,160,80,0.25);
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
+  position: relative;
+}
+
+nav a:first-child { border-left: 1px solid rgba(200,160,80,0.25); }
+
+nav a:hover {
+  background-color: rgba(255,255,255,0.08);
+  color: #f5e0b0;
+  text-decoration: none;
+}
+
+nav a.actief {
+  background-color: rgba(255,255,255,0.12);
+  color: #f5e0b0;
+  font-weight: 600;
+}
+
+/* Actieve indicator-lijn onderaan */
+nav a.actief::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background-color: #c8a050;
+}
+
+/* =============================================
+   HERO — SVG STADSGEZICHT
+   ============================================= */
+
+.hero-svg-wrap {
+  background-color: #140505;
+  border-bottom: 4px solid #9a6e35;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-svg-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 330px;
+}
+
+.hero-svg-wrap .hero-credit {
+  font-size: 0.68rem;
+  color: #7a5020;
+  text-align: right;
+  padding: 0.2rem 0.8rem 0.3rem;
+  background: #0e0303;
+  font-style: italic;
+}
+
+/* =============================================
+   PAGINATITEL (niet-homepagina's)
+   ============================================= */
+
+.pagina-titel {
+  background: linear-gradient(180deg, #3d0a0a 0%, #6e1515 100%);
+  color: #f0e0c0;
+  padding: 2.2rem 1.5rem 1.8rem;
+  text-align: center;
+  border-bottom: 4px solid #9a6e35;
+  position: relative;
+}
+
+/* Decoratieve lijnen boven/onder de paginatitel */
+.pagina-titel::before {
+  content: '✦  ✦  ✦';
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.5em;
+  color: #c8a050;
+  margin-bottom: 0.9rem;
+}
+
+.pagina-titel h1 {
+  color: #fff5e8;
+  font-size: 1.9rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.pagina-titel p {
+  color: #c8a050;
+  font-size: 0.88rem;
+  margin: 0.4rem 0 0;
+  font-style: italic;
+}
+
+/* =============================================
+   CONTAINER
+   ============================================= */
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.4rem 1.6rem;
+}
+
+/* =============================================
+   ONDERZOEKSVRAAG BOX
+   ============================================= */
+
+.onderzoeksvraag {
+  background: linear-gradient(135deg, #fdf3d8 0%, #f5e5c0 100%);
+  border: 1px solid #c0944a;
+  border-left: 5px solid #7a1a1a;
+  border-radius: 0 3px 3px 0;
+  padding: 1.2rem 1.5rem;
+  margin: 1.8rem 0;
+  font-style: italic;
+  font-size: 1.02rem;
+  color: #2a1a0e;
+  box-shadow: 2px 2px 8px rgba(100,50,0,0.1);
+}
+
+.onderzoeksvraag strong {
+  display: block;
+  font-style: normal;
+  font-family: 'Cinzel', Georgia, serif;
+  color: #5a1010;
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* =============================================
+   NAVIGATIEKAARTEN (Home)
+   ============================================= */
+
+.kaarten {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 1.1rem;
+  margin: 1.8rem 0;
+}
+
+.kaart {
+  background: linear-gradient(160deg, #f8edd5 0%, #ecdcba 100%);
+  border: 1px solid #c0944a;
+  border-top: 3px solid #7a1a1a;
+  border-radius: 3px;
+  padding: 1.4rem 1.1rem 1.2rem;
+  text-align: center;
+  color: #2a1a0e;
+  text-decoration: none;
+  transition: transform 0.18s, box-shadow 0.18s;
+  display: block;
+  box-shadow: 0 2px 6px rgba(100,50,0,0.12);
+}
+
+.kaart:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(80,20,0,0.22);
+  text-decoration: none;
+  color: #2a1a0e;
+}
+
+.kaart .kaart-icoon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.kaart h3 {
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.88rem;
+  color: #5a1010;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  margin-top: 0;
+}
+
+.kaart p {
+  font-size: 0.8rem;
+  color: #6b4a2a;
+  margin: 0;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+/* =============================================
+   SCHEIDINGSLIJN (decoratief)
+   ============================================= */
+
+.divider {
+  border: none;
+  text-align: center;
+  margin: 2.2rem 0;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  display: block;
+  border-top: 1px solid #c0944a;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+
+.divider::after {
+  content: '⸻ ✦ ⸻';
+  display: inline-block;
+  position: relative;
+  background-color: #e8d8b4;
+  color: #c0944a;
+  font-size: 0.8rem;
+  padding: 0 1rem;
+  letter-spacing: 0.3em;
+}
+
+/* =============================================
+   SECTIES (inhoudblokken)
+   ============================================= */
+
+.sectie {
+  background: linear-gradient(160deg, #faf0d8 0%, #f0e2c0 100%);
+  border: 1px solid #c8aa72;
+  border-radius: 3px;
+  padding: 1.6rem 1.8rem;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 2px 8px rgba(100,60,0,0.1), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.sectie h2 {
+  color: #5a1010;
+  border-bottom: 1px solid #c8aa72;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.1rem;
+}
+
+/* Decoratief ornamentje na de h2-lijn */
+.sectie h2::after {
+  content: ' ❧';
+  color: #c8a050;
+  font-size: 0.9em;
+}
+
+.sectie h3 {
+  color: #6b2020;
+}
+
+/* =============================================
+   PLAATSHOUDERS (indien nog aanwezig)
+   ============================================= */
+
+.placeholder {
+  border: 2px dashed #b09050;
+  background-color: #fdf3de;
+  border-radius: 2px;
+  padding: 0.9rem 1.1rem;
+  color: #8a6530;
+  font-style: italic;
+  font-size: 0.88rem;
+  margin: 0.7rem 0;
+  line-height: 1.5;
+}
+
+.placeholder::before {
+  content: '\270F  TE VULLEN: ';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.74rem;
+  letter-spacing: 0.07em;
+  color: #8b1e1e;
+}
+
+/* =============================================
+   BLOCKQUOTE (historisch citaat)
+   ============================================= */
+
+blockquote {
+  background: linear-gradient(135deg, #fdf3d8 0%, #f5e5c0 100%);
+  border-left: 5px solid #7a1a1a;
+  border-radius: 0 3px 3px 0;
+  margin: 1.4rem 0;
+  padding: 1.1rem 1.5rem 1.1rem 2.8rem;
+  font-style: italic;
+  color: #3a200e;
+  position: relative;
+  box-shadow: 2px 2px 8px rgba(100,50,0,0.1);
+}
+
+blockquote::before {
+  content: '\201C';
+  font-size: 4rem;
+  color: #c8a050;
+  line-height: 1;
+  position: absolute;
+  top: 0.2rem;
+  left: 0.5rem;
+  font-family: 'Cinzel', Georgia, serif;
+  opacity: 0.7;
+}
+
+blockquote p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  font-style: normal;
+  color: #7a5530;
+  letter-spacing: 0.02em;
+}
+
+/* =============================================
+   INFO-BOX (opsomming met pijltjes)
+   ============================================= */
+
+.info-box {
+  background: linear-gradient(135deg, #fdf3d8 0%, #f5e5c0 100%);
+  border: 1px solid #c8a050;
+  border-radius: 3px;
+  padding: 1rem 1.3rem;
+  margin: 1rem 0;
+}
+
+.info-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-box ul li {
+  padding: 0.28rem 0 0.28rem 1.5rem;
+  position: relative;
+  font-size: 0.93rem;
+  border-bottom: 1px solid rgba(200,160,80,0.25);
+}
+
+.info-box ul li:last-child { border-bottom: none; }
+
+.info-box ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0.2rem;
+  color: #7a1a1a;
+  font-size: 0.75rem;
+  top: 0.38rem;
+}
+
+/* =============================================
+   TIJDLIJN
+   ============================================= */
+
+.tijdlijn {
+  list-style: none;
+  padding: 0;
+  position: relative;
+  margin: 1.2rem 0;
+}
+
+.tijdlijn::before {
+  content: '';
+  position: absolute;
+  left: 90px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #c0944a 8%, #c0944a 92%, transparent);
+}
+
+.tijdlijn li {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.3rem;
+  align-items: flex-start;
+}
+
+.tijdlijn .jaar {
+  min-width: 82px;
+  text-align: right;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #7a1a1a;
+  padding-top: 0.1rem;
+  padding-right: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.tijdlijn .event {
+  padding-left: 1.3rem;
+  position: relative;
+  flex: 1;
+  font-size: 0.93rem;
+}
+
+.tijdlijn .event::before {
+  content: '';
+  position: absolute;
+  left: -0.55rem;
+  top: 0.42rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #7a1a1a;
+  border: 2px solid #e8d8b4;
+  box-shadow: 0 0 0 1px #c0944a;
+}
+
+/* =============================================
+   SUB-NAVIGATIE (Onderzoek)
+   ============================================= */
+
+.sub-nav {
+  display: flex;
+  flex-wrap: wrap;
+  background: linear-gradient(160deg, #f8edd5 0%, #ecdcba 100%);
+  border: 1px solid #c8aa72;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.6rem;
+  box-shadow: 0 1px 4px rgba(100,60,0,0.1);
+}
+
+.sub-nav a {
+  padding: 0.65rem 1.3rem;
+  color: #5a1010;
+  text-decoration: none;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-right: 1px solid #c8aa72;
+  transition: background-color 0.18s, color 0.18s;
+}
+
+.sub-nav a:last-child { border-right: none; }
+
+.sub-nav a:hover,
+.sub-nav a.actief {
+  background-color: #7a1a1a;
+  color: #f5e8c8;
+  text-decoration: none;
+}
+
+/* =============================================
+   AFBEELDINGSKADER (figure + figcaption)
+   ============================================= */
+
+.afbeelding-kader {
+  margin: 1.6rem 0;
+  text-align: center;
+}
+
+.afbeelding-kader img,
+.afbeelding-kader svg {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #c8a050;
+  filter: sepia(35%) contrast(1.05);
+  display: block;
+  margin: 0 auto;
+  box-shadow: 3px 3px 12px rgba(100,60,0,0.2);
+}
+
+.afbeelding-kader figcaption {
+  font-size: 0.76rem;
+  color: #7a5530;
+  font-style: italic;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* =============================================
+   BRONNEN — DONKERE KAARTEN
+   ============================================= */
+
+.bronnen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+.bron-kolom {
+  background: linear-gradient(160deg, #5a1212 0%, #6e1515 60%, #7a1a1a 100%);
+  border-radius: 3px;
+  padding: 1.7rem 1.3rem 1.5rem;
+  text-align: center;
+  color: #f0e0c0;
+  box-shadow: 0 3px 10px rgba(50,0,0,0.3), inset 0 1px 0 rgba(255,220,150,0.15);
+}
+
+.bron-kolom h3 {
+  font-family: 'Cinzel', Georgia, serif;
+  color: #f0dfa8;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.9rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(200,160,80,0.4);
+}
+
+.bron-kolom .icoon {
+  display: block;
+  font-size: 2.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.bron-kolom ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.bron-kolom ul li {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(200,160,80,0.2);
+  font-size: 0.84rem;
+  color: #e0caa8;
+  line-height: 1.5;
+}
+
+.bron-kolom ul li:last-child { border-bottom: none; }
+
+.bron-kolom em { color: #f0dfa8; }
+
+/* =============================================
+   TEAM
+   ============================================= */
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+.team-lid {
+  background: linear-gradient(160deg, #f8edd5 0%, #ecdcba 100%);
+  border: 1px solid #c8aa72;
+  border-top: 3px solid #7a1a1a;
+  border-radius: 3px;
+  text-align: center;
+  padding: 1.4rem 0.8rem 1.1rem;
+  box-shadow: 0 2px 6px rgba(100,60,0,0.1);
+  transition: transform 0.15s;
+}
+
+.team-lid:hover { transform: translateY(-2px); }
+
+.team-lid .avatar {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #5a1010 0%, #8b2020 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.8rem;
+  color: #f0e0c0;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: 2px solid #c0944a;
+  box-shadow: 0 2px 8px rgba(50,0,0,0.3);
+}
+
+.team-lid .naam {
+  font-family: 'Cinzel', Georgia, serif;
+  font-weight: 600;
+  color: #5a1010;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+
+footer {
+  background: linear-gradient(180deg, #2a0606 0%, #1a0404 100%);
+  color: #c8a050;
+  text-align: center;
+  padding: 1.4rem 1rem;
+  font-size: 0.82rem;
+  font-family: 'Cinzel', Georgia, serif;
+  letter-spacing: 0.08em;
+  border-top: 3px solid #9a6e35;
+  margin-top: 3.5rem;
+  position: relative;
+}
+
+footer::before {
+  content: '✦';
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #9a6e35;
+}
+
+footer a { color: #e8d4a0; }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 640px) {
+  h1              { font-size: 1.55rem; }
+  h2              { font-size: 1.25rem; }
+  nav a           { padding: 0.6rem 0.8rem; font-size: 0.7rem; }
+  .kaarten        { grid-template-columns: 1fr 1fr; }
+  .bronnen-grid   { grid-template-columns: 1fr; }
+  .tijdlijn::before { left: 72px; }
+  .tijdlijn .jaar { min-width: 65px; font-size: 0.72rem; }
+  .pagina-titel h1 { font-size: 1.5rem; }
+  .container      { padding: 1.6rem 1rem; }
+  .sectie         { padding: 1.2rem 1.1rem; }
+}
